@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 } // Require dotenv only in non-production environment
 
+require('./config/mongoose')
+
 const routes = require('./routes')
 
 const app = express()
