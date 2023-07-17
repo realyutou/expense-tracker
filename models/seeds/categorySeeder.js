@@ -9,7 +9,7 @@ const categoryList =[ { name: '家居物業' }, { name: '交通出行' }, { name
 db.once('open', () =>{
   Promise.all(Array.from({ length: categoryList.length }, (_, i) => Category.create({ name: categoryList[i].name })))
     .then(() => {
-      console.log('Done!')
+      console.log('SEED_CATEGORY is created!')
       process.exit()
     })
 })
