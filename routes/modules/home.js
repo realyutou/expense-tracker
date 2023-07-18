@@ -4,7 +4,7 @@ const router = express.Router()
 
 // Set routes
 router.get('/', (req, res) => {
-  res.send('This is expense-tracker.')
+  res.render('index')
 })
 
 // 匯出 home 路由模組
