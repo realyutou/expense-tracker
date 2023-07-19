@@ -45,6 +45,7 @@ db.once('open', () => {
     .then((data) => {
       for (let i = 0; i < recordList.length; i++) {
         recordList[i].categoryId = data[i]._id
+        recordList[i].categoryIcon = data[i].icon
       }
       return Promise.all(Array.from({ length: userList.length }, (_, i) => User.create({ name: userList[i].name })))
     })
@@ -61,6 +62,7 @@ db.once('open', () => {
         name: recordList[i].name,
         date: recordList[i].date,
         category: recordList[i].category,
+        categoryIcon: recordList[i].categoryIcon,
         amount: recordList[i].amount,
         userId: recordList[i].userId,
         categoryId: recordList[i].categoryId
