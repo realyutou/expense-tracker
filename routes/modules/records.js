@@ -1,13 +1,14 @@
 // Include packages and define related variables
 const express = require('express')
 const router = express.Router()
-const Category = require('../../models/category')
 const Record = require('../../models/record')
+const Category = require('../../models/category')
 
 // Set routes
-router.get('/', (req, res) => {
+router.get('/category/:category', (req, res) => {
+  const keyCategory = req.params.category
   let totalAmount = 0
-  Record.find()
+  Record.find({ category: keyCategory })
     .lean()
     .then(records => {
       for (let i = 0; i < records.length; i++) {
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
       Category.find()
         .lean()
         .then(category => {
-          res.render('index', { category, records, totalAmount })
+          res.render('index', { keyCategory, category, records, totalAmount })
         })
     })
 })

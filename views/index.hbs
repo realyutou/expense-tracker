@@ -4,15 +4,22 @@
       <div class="dropdown w-75">
         <button class="btn btn-light btn-lg dropdown-toggle w-100 border border-dark text-end d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <p class="text-start m-0">類別</p>
+          <p class="text-start m-0">
+            {{#if keyCategory }}
+              {{ this.keyCategory }}
+            {{else}}
+              類別
+            {{/if}}
+          </p>
         </button>
         <ul class="dropdown-menu w-100 text-center">
           {{#each category}}
-          <li><a class="dropdown-item" href="#">{{ this.name }}</a></li>
+          <li><a class="dropdown-item" href="/records/category/{{ this.name }}">{{ this.name }}</a></li>
           {{/each}}
         </ul>
       </div>
     </li>
+    {{#if records}}
     <li class="list-group-item border-start-0 border-end-0">
       <div class="row w-75">
         <div class="col-auto me-auto my-auto text-end">
@@ -51,5 +58,9 @@
         </div>
       </li>
     {{/each}}
+    {{else}}
+    <h1 class="text-danger mt-5">找不到支出紀錄</h1>
+    {{/if}}
+    
   </ul>
 </div>
