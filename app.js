@@ -1,6 +1,7 @@
 // Include packages and define related variables
 const express = require('express')
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 } // Require dotenv only in non-production environment
@@ -19,6 +20,9 @@ app.set('view engine', 'hbs')
 
 // Set body-parser
 app.use(express.urlencoded({ extended: true }))
+
+// 設定每筆請求都會透過 method-override 處理
+app.use(methodOverride('_method'))
 
 // 將 request 導入路由器
 app.use(routes)

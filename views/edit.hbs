@@ -7,13 +7,13 @@
   </div>
 </div>
 
-<form action="/records/new" method="POST" class="w-50 mx-auto mt-4">
+<form action="/records/{{ record._id }}?_method=PUT" method="POST" class="w-50 mx-auto mt-4">
   <div class="row align-items-center mb-3">
     <div class="col-auto">
       <label for="name" class="col-form-label fs-3">*名稱：</label>
     </div>
     <div class="col-auto mx-auto w-75">
-      <input type="text" id="name" name="name" class="form-control">
+      <input type="text" id="name" name="name" class="form-control" value="{{ record.name }}">
     </div>
   </div>
   <div class="row align-items-center mb-3">
@@ -21,7 +21,7 @@
       <label for="date" class="col-form-label fs-3">*日期：</label>
     </div>
     <div class="col-auto mx-auto w-75">
-      <input type="date" id="date" name="date" class="form-control">
+      <input type="date" id="date" name="date" class="form-control" value="{{ date }}">
     </div>
   </div>
   <div class="row align-items-center mb-3">
@@ -30,7 +30,7 @@
     </div>
     <div class="col-auto mx-auto w-75">
       <select class="form-select" id="category" name="category">
-        <option disabled selected>選擇一個類別</option>
+        <option value="{{ record.category }}" selected>{{ record.category }}</option>
         <option value="家居物業">家居物業</option>
         <option value="交通出行">交通出行</option>
         <option value="休閒娛樂">休閒娛樂</option>
@@ -44,7 +44,7 @@
       <label for="amount" class="col-form-label fs-3">*金額：</label>
     </div>
     <div class="col-auto mx-auto w-75">
-      <input type="number" id="amount" name="amount" class="form-control" min="0">
+      <input type="number" id="amount" name="amount" class="form-control" value="{{ record.amount }}" min="0">
     </div>
   </div>
   <div class="row align-items-center mb-3">
@@ -52,8 +52,8 @@
       <label for="user" class="col-form-label fs-3">*user：</label>
     </div>
     <div class="col-auto mx-auto w-75">
-      <input type="text" id="user" name="user" class="form-control">
+      <input type="text" id="user" name="user" class="form-control" value="{{ user.name }}">
     </div>
   </div>
-  <button type="submit" class="btn btn-outline-primary btn-lg w-100">新增支出</button>
+  <button type="submit" class="btn btn-outline-primary btn-lg w-100">送出</button>
 </form>
