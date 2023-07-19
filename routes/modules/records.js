@@ -36,7 +36,7 @@ router.get('/new', (req, res) => {
 })
 
 // 送出新支出資料
-router.post('/new', (req, res) => {
+router.post('/', (req, res) => {
   const { name, date, category, amount, user } = req.body
   Category.findOne({ name: category })
     .then(category => {
@@ -73,6 +73,7 @@ router.get('/:id/edit', (req, res) => {
     .catch(console.error)
 })
 
+// 送出編輯後的資料
 router.put('/:id', (req, res) => {
   const { name, date, category, amount, user } = req.body
   const recordId = req.params.id
@@ -91,6 +92,14 @@ router.put('/:id', (req, res) => {
         .then(() => res.redirect('/'))
         .catch(console.error)
     }) 
+})
+
+// 使用者可以刪除一筆支出紀錄
+router.delete('/:id', (req, res) => {
+  const recordId = req.params.id
+  return Record.findOneAndRemove({ _id: recordId })
+    .then(() => res.redirect('/'))
+    .catch(console.error)
 })
 
 // 匯出 records 路由模組
