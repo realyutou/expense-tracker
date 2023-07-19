@@ -17,6 +17,9 @@ const PORT = process.env.PORT
 app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+// Set body-parser
+app.use(express.urlencoded({ extended: true }))
+
 // 將 request 導入路由器
 app.use(routes)
 
