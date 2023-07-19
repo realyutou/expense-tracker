@@ -1,5 +1,6 @@
 // Include packages and define related variables
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 if (process.env.NODE_ENV !== 'production') {
@@ -17,6 +18,13 @@ const PORT = process.env.PORT
 // Set template engine
 app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+// Set express-session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
 
 // Set body-parser
 app.use(express.urlencoded({ extended: true }))
