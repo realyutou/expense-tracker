@@ -30,5 +30,16 @@ router.post('/register', (req, res) => {
     .catch(console.error)
 })
 
+// 使用者可以登入帳號
+// 登入表單頁面
+router.get('/login', (req, res) => {
+  res.render('login')
+})
+
+// 送出登入表單
+router.post('/login', (req, res) => {
+  res.redirect('/')
+})
+
 // 匯出 users 路由模組
 module.exports = router
