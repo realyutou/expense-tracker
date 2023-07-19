@@ -6,7 +6,18 @@ const db = require('../../config/mongoose')
 const User = require('../user')
 const Record = require('../record')
 const Category = require('../category')
-const userList = [ { name: '廣志' }, { name: '小新' } ]
+const userList = [
+  {
+    name: '廣志',
+    email: 'user1@example.com',
+    password: 'user1'
+  },
+  {
+    name: '小新',
+    email: 'user2@example.com',
+    password: 'user2'
+  }
+]
 const recordList = [
   {
     name: '午餐',
@@ -47,7 +58,7 @@ db.once('open', () => {
         recordList[i].categoryId = data[i]._id
         recordList[i].categoryIcon = data[i].icon
       }
-      return Promise.all(Array.from({ length: userList.length }, (_, i) => User.create({ name: userList[i].name })))
+      return Promise.all(Array.from({ length: userList.length }, (_, i) => User.create({ name: userList[i].name, email: userList[i].email, password: userList[i].password })))
     })
     .then(users => {
       console.log('SEED_USERS are created!')
