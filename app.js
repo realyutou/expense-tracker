@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 } // Require dotenv only in non-production environment
 
-
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const routes = require('./routes')
@@ -31,6 +31,9 @@ app.use(express.urlencoded({ extended: true }))
 
 // 設定每筆請求都會透過 method-override 處理
 app.use(methodOverride('_method'))
+
+// 呼叫 Passport 函式並傳入 app
+usePassport(app)
 
 // 將 request 導入路由器
 app.use(routes)

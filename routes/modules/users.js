@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/user')
+const passport = require('passport')
 
 // Set routes
 // 使用者可以註冊帳號
@@ -37,9 +38,10 @@ router.get('/login', (req, res) => {
 })
 
 // 送出登入表單
-router.post('/login', (req, res) => {
-  res.redirect('/')
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 // 匯出 users 路由模組
 module.exports = router
