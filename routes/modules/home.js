@@ -7,8 +7,9 @@ const Record = require('../../models/record')
 // Set routes
 // 使用者可以查看所有支出紀錄
 router.get('/', (req, res) => {
+  const userId = req.user._id
   let totalAmount = 0
-  Record.find()
+  Record.find({ userId })
     .lean()
     .then(records => {
       for (let i = 0; i < records.length; i++) {
