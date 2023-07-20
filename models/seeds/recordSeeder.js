@@ -1,4 +1,5 @@
 // Include packages and define related variables
+const bcrypt = require('bcryptjs')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 } // Require dotenv only in non-production environment
@@ -10,12 +11,12 @@ const userList = [
   {
     name: '廣志',
     email: 'user1@example.com',
-    password: 'user1'
+    password: '12345678'
   },
   {
     name: '小新',
     email: 'user2@example.com',
-    password: 'user2'
+    password: '12345678'
   }
 ]
 const recordList = [
@@ -58,7 +59,16 @@ db.once('open', () => {
         recordList[i].categoryId = data[i]._id
         recordList[i].categoryIcon = data[i].icon
       }
-      return Promise.all(Array.from({ length: userList.length }, (_, i) => User.create({ name: userList[i].name, email: userList[i].email, password: userList[i].password })))
+      return Promise.all(Array.from({ length: userList.length }, (_, i) => {
+        return bcrypt
+          .genSalt(10)
+          .then(salt => bcrypt.hash(userList[i].password, salt))
+          .then(hash => User.create({
+            name: userList[i].name,
+            email: userList[i].email,
+            password: hash
+          }))
+      }))
     })
     .then(users => {
       console.log('SEED_USERS are created!')
