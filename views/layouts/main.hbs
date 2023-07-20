@@ -8,11 +8,11 @@
   <script src="https://kit.fontawesome.com/72594019ea.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav class="navbar bg-primary" data-bs-theme="dark">
+  <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container w75">
       <a class="navbar-brand" href="/">
         <i class="fa-regular fa-pen-to-square"></i>
-        {{#if isAuthenticated}}{{ user.name }}的{{/if}}家庭記帳本
+        {{#if isAuthenticated}}{{ user.name }}的{{/if}}記帳本
       </a>
       {{#if isAuthenticated}}
         <a href="/users/logout" class="btn btn-outline-light">登出</a>
