@@ -1,9 +1,10 @@
 // Include packages and define related variables
 const express = require('express')
 const router = express.Router()
-const User = require('../../models/user')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 
+const User = require('../../models/user')
 // Set routes
 // 使用者可以註冊帳號
 // 註冊表單頁面
@@ -45,10 +46,17 @@ router.post('/register', (req, res) => {
           confirmPassword
         })
       }
-      return User.create({ name, email, password })
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({
+          name,
+          email,
+          password: hash
+        }))
         .then(() => res.redirect('/'))
+        .catch(console.error)
     })
-    .catch(console.error)
 })
 
 // 使用者可以登入帳號
