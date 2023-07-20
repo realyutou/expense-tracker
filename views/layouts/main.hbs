@@ -12,8 +12,13 @@
     <div class="container w75">
       <a class="navbar-brand" href="/">
         <i class="fa-regular fa-pen-to-square"></i>
-        家庭記帳本
+        {{#if isAuthenticated}}{{ user.name }}的{{/if}}家庭記帳本
       </a>
+      {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-outline-light">登出</a>
+      {{else}}
+        <a href="/users/login" class="btn btn-outline-light">登入</a>
+       {{/if}}
     </div>
   </nav>
 
