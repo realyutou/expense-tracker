@@ -1,13 +1,15 @@
 <div class="row align-items-center mx-auto w-50 mt-5">
+  <div class="text-center mx-auto mb-2">
+    {{> message}}
+  </div>
   <div class="col-auto">
     <p>*為必填</p>
   </div>
   <div class="col-auto mx-auto w-75">
-    <h2 class="text-center">請輸入你的支出</h2>
+    <h2 class="text-center">修改你的支出</h2>
   </div>
 </div>
-
-<form action="/records/{{ record._id }}?_method=PUT" method="POST" class="w-50 mx-auto mt-4">
+<form action="/records/{{ recordId }}?_method=PUT" method="POST" class="w-50 mx-auto mt-4">
   <div class="row align-items-center mb-3">
     <div class="col-auto">
       <label for="name" class="col-form-label fs-3">*名稱：</label>

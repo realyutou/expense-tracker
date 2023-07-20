@@ -3,6 +3,7 @@ const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 } // Require dotenv only in non-production environment
@@ -35,10 +36,15 @@ app.use(methodOverride('_method'))
 // 呼叫 Passport 函式並傳入 app
 usePassport(app)
 
+// Set connect-flash
+app.use(flash())
+
 // 設定 res.locals (所有 view 都能存取的資料)
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
