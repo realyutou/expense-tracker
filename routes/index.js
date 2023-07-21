@@ -9,7 +9,6 @@ const auth = require('./modules/auth')
 
 const { authenticator } = require('../middleware/auth')
 
-
 // 將網址結構符合 '/records' 的 request 傳入 records 模組
 router.use('/records', authenticator, records)
 

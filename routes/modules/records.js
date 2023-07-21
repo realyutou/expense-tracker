@@ -3,7 +3,6 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const User = require('../../models/user')
 
 // Set routes
 // 使用者可以依類別篩選支出紀錄
@@ -40,7 +39,7 @@ router.post('/', (req, res) => {
   const { name, date, category, amount } = req.body
   const errors = []
   if (!name || !date || !category || !amount) {
-    errors.push({ message: '所有欄位都是必填。'})
+    errors.push({ message: '所有欄位都是必填。' })
     return res.render('new', {
       errors,
       name,
@@ -82,7 +81,7 @@ router.put('/:id', (req, res) => {
   const { name, date, category, amount } = req.body
   const recordId = req.params.id
   const errors = []
-  if(!name || !date || !category || !amount) {
+  if (!name || !date || !category || !amount) {
     const record = req.body
     errors.push({ message: '所有欄位都是必填。' })
     return res.render('edit', {

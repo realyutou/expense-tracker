@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 } // Require dotenv only in non-production environment
 const db = require('../../config/mongoose')
 const Category = require('../category')
-const categoryList =[
+const categoryList = [
   {
     name: '家居物業',
     icon: '<i class="fa-solid fa-house"></i>'
@@ -25,9 +25,9 @@ const categoryList =[
     name: '其他',
     icon: '<i class="fa-solid fa-pen"></i>'
   }
-] 
+]
 
-db.once('open', () =>{
+db.once('open', () => {
   Promise.all(Array.from({ length: categoryList.length }, (_, i) => Category.create({
     name: categoryList[i].name,
     icon: categoryList[i].icon
