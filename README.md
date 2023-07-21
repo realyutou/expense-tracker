@@ -18,7 +18,7 @@
 git clone https://github.com/realyutou/expense-tracker.git
 ```
 
-3. 安裝相關套件：輸入以下指令
+3. 進入本專案資料夾，安裝相關套件：輸入以下指令
 
 ```bash
 npm install
@@ -35,7 +35,7 @@ npm run seed
 6. 執行此專案：輸入以下指令
 
 ```bash
-npm run seed
+npm run start
 ```
 
 7. 若終端機出現以下訊息，代表專案已順利執行，請至瀏覽器進入該網址
